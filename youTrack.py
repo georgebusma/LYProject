@@ -8,7 +8,7 @@ tracker = EuclideanDistTracker()
 cap = cv.VideoCapture("bettervideo_Trim.mp4")
 
 #Object detection
-obj_KNN = cv.createBackgroundSubtractorKNN()
+#obj_KNN = cv.createBackgroundSubtractorKNN()
 object_detector = cv.createBackgroundSubtractorMOG2(history=100, varThreshold=40, detectShadows=False)
 
 #Initialise the fruit counter
@@ -60,9 +60,9 @@ while True:
     mask = cv.cvtColor(mask, cv.COLOR_GRAY2BGR)
     foreMask = object_detector.apply(result) #extract the foreground mask
 
-    # Draw the reference traffic lines
+    # Draw the reference counting lines
     cv.line(frame, (238, 0), (238, 580), (255, 0, 255), 1)  # Violet line
-    cv.line(roi, (235, 0), (235, 580), (255, 255, 0), 1)
+    cv.line(roi, (235, 0), (235, 580), (255, 255, 0), 1) # !!! Two lines might be a solution for avoiding fruit double-counting. 
     # cv.line(roi, (258, 0), (268, 580), (255, 255, 0), 2)
 
     #1. Object detection
